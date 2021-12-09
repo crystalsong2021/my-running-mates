@@ -20,6 +20,10 @@ app.get('/api/greeting', (req, res) => {
   res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
 });
 
+app.post('/event', (req, res) => {
+  console.log('Post event->', req.body)
+})
+
 app.post('/api/messages', (req, res) => {
   console.log('POST-->', req.body)
   res.header('Content-Type', 'application/json');
