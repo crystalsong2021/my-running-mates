@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import {  Button, Grid, TextField } from '@material-ui/core';
+// import {
+//   MuiPickersUtilsProvider,
+//   KeyboardDatePicker
+// } from '@material-ui/pickers';
+// import 'date-fns';
+// import DateFnsUtils from '@date-io/date-fns';
+import {  Typography, Button, Grid, TextField } from '@material-ui/core';
+
 
 class EventForm extends Component {
   constructor(props) {
@@ -85,6 +92,15 @@ class EventForm extends Component {
             onChange={this.onHandleChange}
           />
         </div>
+        {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+        <KeyboardDatePicker
+          label="Event Date"
+          value={this.state.event.date}
+          onChange={this.onHandleChange}
+        />
+
+      </MuiPickersUtilsProvider> */}
 
         <button type="submit" disabled={this.state.submitting}>
           Create

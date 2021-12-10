@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Typography, AppBar, Box, Card, CardActions, Button, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container  } from '@material-ui/core';
 
 import RunCircleIcon from '@mui/icons-material/RunCircle';
-import Map from '../component/Map.jsx';
+import BuildMap from '../component/BuildMap.jsx';
 import SMSForm from '../component/SMSForm.jsx';
-import DateTime from '../component/DateTime.jsx';
+
 
 
 class Main extends React.Component {
@@ -30,7 +30,7 @@ class Main extends React.Component {
                 <div>
                   <Grid Container  direction='row' spacing={2} justify='center'>
                       <Grid item direction='row'>
-                          <Map/>
+                          <BuildMap/>
                       </Grid>
 
                       <Grid item  direction='row'>

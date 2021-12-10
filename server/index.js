@@ -5,10 +5,12 @@ const client = require('twilio')(
   process.env.TWILIO_ACCOUNT_SID,
   process.env.TWILIO_AUTH_TOKEN
 );
-console.log('client--->', client);
+// console.log('client--->', client);
 const port = process.env.PORT || 3001;
 const app = express();
 app.use('/', express.static('client/dist'));
+app.use('/create', express.static('client/dist'));
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(pino);
@@ -43,5 +45,5 @@ app.post('/api/messages', (req, res) => {
 });
 
 app.listen(port, () =>
-  console.log(`Express server is running on localhost:${port}`)
+  console.log(`-------------------Express server is running on localhost: [ ${port} ]-------------`)
 );

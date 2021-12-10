@@ -6,7 +6,7 @@ class Create extends React.Component {
   render() {
     return(
       <>
-        <h1>Create Form</h1>
+        <EventForm />
       </>
     )}
 }

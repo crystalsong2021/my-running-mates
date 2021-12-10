@@ -10,6 +10,7 @@ module.exports = {
         filename: "bundle.js",
         path: path.join(__dirname,'/client/dist')
     },
+    // devtool: "source-map"
     module: {
         rules: [
           {
@@ -19,6 +20,11 @@ module.exports = {
               loader: "babel-loader"
 
             },
+            // {
+            //   test: /\.js$/,
+            //   enforce: 'pre',
+            //   use: ['source-map-loader'],
+            // },
             // options: {
             //   presets: ['@babel/preset-react']
             // }
@@ -26,3 +32,4 @@ module.exports = {
         ],
     }
 }
+
