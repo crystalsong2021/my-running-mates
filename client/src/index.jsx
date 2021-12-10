@@ -1,20 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Map from './component/Map.jsx';
-import SMSForm from './component/SMSForm.jsx';
-import DateTime from './component/DateTime.jsx';
-import EventForm from './component/EventForm.jsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Main from './pages/Main.jsx';
+import Create from './pages/Create.jsx';
 
 class App extends React.Component {
 
   render() {
     return(
       <>
-        <h1>Hello</h1>
-        <Map/>
-        <SMSForm/>
-        <DateTime/>
-        <EventForm/>
+        <Router>
+          <Routes>
+            <Route path='/' element={<Main />} />
+            <Route path='/create' element={<Create />} />
+          </Routes>
+        </Router>
+
       </>
     )
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { Typography,Button, TextField} from '@material-ui/core';
+import RunCircleIcon from '@mui/icons-material/RunCircle';
 
 class SMSForm extends Component {
   constructor(props) {
@@ -56,32 +57,58 @@ class SMSForm extends Component {
 
   render() {
     return (
+
       <form
         onSubmit={this.onSubmit}
         className={this.state.error ? 'error sms-form' : 'sms-form'}
       >
         <div>
-          <label htmlFor="to">To:</label>
+        <TextField
+            id='to'
+            name='to'
+            label='To'
+            type='tel'
+            value={this.state.message.to}
+            onChange={this.onHandleChange}
+            margin="dense"
+            rows='20'
+            fullWidth
+            variant="outlined"
+          />
+          {/* <label htmlFor="to">To:</label>
           <input
             type="tel"
             name="to"
             id="to"
             value={this.state.message.to}
             onChange={this.onHandleChange}
-          />
+          /> */}
         </div>
         <div>
-          <label htmlFor="body">Body:</label>
+          <TextField
+            id="body"
+            name="body"
+            label='Body'
+            type='text'
+            value={this.state.message.body}
+            onChange={this.onHandleChange}
+            margin="dense"
+            rows='40'
+            fullWidth
+            variant="outlined"
+          />
+
+
+          {/* <label htmlFor="body">Body:</label>
           <textarea
             name="body"
             id="body"
             value={this.state.message.body}
             onChange={this.onHandleChange}
-          />
+          /> */}
         </div>
-        <button type="submit" disabled={this.state.submitting}>
-          Send message
-        </button>
+        <Button var='contained' color='primary' type="submit" disabled={this.state.submitting}>Send message</Button>
+
       </form>
     );
   }

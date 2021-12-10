@@ -25,7 +25,7 @@ app.post('/event', (req, res) => {
 })
 
 app.post('/api/messages', (req, res) => {
-  console.log('POST-->', req.body)
+  console.log('POST message to Twillo-->', req.body)
   res.header('Content-Type', 'application/json');
   client.messages
     .create({
