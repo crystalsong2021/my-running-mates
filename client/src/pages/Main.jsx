@@ -45,8 +45,8 @@ class Main extends React.Component {
                   </Grid>
                   <Grid Container  spacing={2} justify='center'>
 
-                  <Typography variant='h6' align='center' color='textPrimary gutterBottom'>
-                  Try sending info to your phone. It's free.
+                  <Typography variant='subtitle2' align='center' color='textPrimary gutterBottom'>
+                  You can send event information to your phone right here.
                   </Typography>
                       <Grid item >
                           <SMSForm/>

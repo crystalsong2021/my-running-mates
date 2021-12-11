@@ -1,11 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useRef, useState } from 'react';
+
+
 // import {
 //   MuiPickersUtilsProvider,
 //   KeyboardDatePicker
 // } from '@material-ui/pickers';
 // import 'date-fns';
 // import DateFnsUtils from '@date-io/date-fns';
-import {  Typography, Button, Grid, TextField } from '@material-ui/core';
+import {  Typography, Button, Grid, TextField , AppBar, Toolbar} from '@material-ui/core';
+
+import AddIcon from '@mui/icons-material/Add';
+import AddAutocomplete from './AddAutocomplete.jsx'
 
 
 class EventForm extends Component {
@@ -16,6 +21,7 @@ class EventForm extends Component {
         name: '',
         address: '',
         date:'',
+        time:'',
         yes:0,
         maybe:0
       },
@@ -69,11 +75,51 @@ class EventForm extends Component {
 
   render() {
     return (
+      <>
+      <AppBar position='relative'>
+          <Toolbar>
+          <Typography variant='h6' align='center'>Create Event</Typography>
+          </Toolbar>
+      </AppBar>
       <form
         onSubmit={this.onSubmit}
         className={this.state.error ? 'error sms-form' : 'sms-form'}
       >
-        <div>
+        <TextField
+         type='text'
+          variant='outlined'
+          label='Name'
+          size='medium'
+          name="name"
+          color='primary'
+          id="name"
+          value={this.state.event.name}
+          onChange={this.onHandleChange}
+        />
+        <br/>
+        <TextField
+         type='date'
+          variant='outlined'
+          size='medium'
+          name="date"
+          color='primary'
+          id="date"
+          value={this.state.event.date}
+          onChange={this.onHandleChange}
+        />
+        <br/>
+        <TextField
+         type='time'
+          variant='outlined'
+          size='medium'
+          name="time"
+          color='primary'
+          id="time"
+          value={this.state.event.time}
+          onChange={this.onHandleChange}
+        />
+
+        {/* <div>
           <label htmlFor="name">name</label>
           <input
             type="text"
@@ -82,8 +128,8 @@ class EventForm extends Component {
             value={this.state.event.name}
             onChange={this.onHandleChange}
           />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <label htmlFor="address">address:</label>
           <textarea
             name="address"
@@ -91,7 +137,7 @@ class EventForm extends Component {
             value={this.state.event.address}
             onChange={this.onHandleChange}
           />
-        </div>
+        </div> */}
         {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
         <KeyboardDatePicker
@@ -101,11 +147,23 @@ class EventForm extends Component {
         />
 
       </MuiPickersUtilsProvider> */}
-
-        <button type="submit" disabled={this.state.submitting}>
+        <div>
+          <AddAutocomplete/>
+        </div>
+        <Button
+          endIcon={ <AddIcon /> }
+          size='small'
+          variant='contained'
+          color='primary'
+          type='submit'
+        >
           Create
-        </button>
+        </Button>
+        {/* <button type="submit" disabled={this.state.submitting}>
+          Create
+        </button> */}
       </form>
+      </>
     );
   }
 }

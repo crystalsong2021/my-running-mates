@@ -4,7 +4,7 @@ import {geosearch} from 'esri-leaflet-geocoder';
 import ReactDOM from 'react-dom';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { divIcon } from 'leaflet';
-import { MapContainer, Marker, Popup, TileLayer} from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer, useMap} from 'react-leaflet'
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 // import 'leaflet/dist/leaflet.css';
 // import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';

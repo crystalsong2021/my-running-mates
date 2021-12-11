@@ -1,75 +1,76 @@
-import React, { useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
-import { renderToStaticMarkup } from 'react-dom/server';
-import { divIcon, Map } from 'leaflet';
-import { MapContainer, Marker, Popup, TileLayer, useMap} from 'react-leaflet'
-import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-import { GeoSearchControl, MapBoxProvider ,OpenStreetMapProvider} from 'leaflet-geosearch';
-import L from 'leaflet';
+import React, { Component, useEffect, useRef } from 'react';
+import { MapContainer, Marker, Popup, TileLayer, useMap, Map ,useMapEvents} from 'react-leaflet'
+// import Search from './Search.jsx';
 
-function BuildMap() {
-  //to change the icon to runner using FontAwesome
-  const iconMarkup = renderToStaticMarkup(<i className=" fas fa-running fa-3x" />);
-  const customMarkerIcon = divIcon({
-      html: iconMarkup,
-    });
-  const provider = new OpenStreetMapProvider();
+// delete L.Icon.Default.prototype._getIconUrl;
 
-  const searchControl = new GeoSearchControl({
-    provider: provider,
-  });
+// L.Icon.Default.mergeOptions({
+//   iconRetinaUrl: null,
+//   iconUrl: null,
+//   shadowUrl: null
+// });
 
-  const map = new L.Map('map');
-  map.addControl(searchControl);
+const location = [38.9072, -77.0369];
+const zoom = 4;
 
-  const planes = [
+function LocationMarker() {
+  const [position, setPosition] = useState(null)
+  const map = useMapEvents({
+    click() {
+      map.locate()
+    },
+    locationfound(e) {
+      console.log('Lat===>', e.latlng)
+      // setPosition(e.latlng)
+      map.flyTo(e.latlng, map.getZoom())
+    },
+  })
 
-		["Cathédrale Notre-Dame de Paris 6 Parvis Notre-Dame – Pl. Jean-Paul II 75004 Paris, France",48.853693067485557,2.352743664946491],
-		["Louvre Museum, Rue de Rivoli, 75001 Paris, France",48.861655440849454,2.3378949568965135],
-		["Arc de Triomphe,Pl. Charles de Gaulle, 75008 Paris, France",48.87458453980969, 2.295580428466861],
-		["Eiffel Tower,Champ de Mars, 5 Av. Anatole France, 75007 Paris, France",48.8592273332406, 2.2948079502736616],
-		["Musée Marmottan Monet,2 Rue Louis Boilly, 75016 Paris, France",48.860639038209676, 2.2671704694513704],
+  return position === null ? null : (
+    <Marker position={position}>
+      <Popup>You are here</Popup>
+    </Marker>
+  )
+}
 
-		];
-
-  return(
-    <div>
-
-
-      <div className='leafletContainer'>
+function BuildMap(){
+  return (
+    <div className='leafletContainer'>
         < MapContainer
 
           style={{ height: '100%', width: '100%' }}
-          center={[48.86092312142704, 2.3255343967625355]}
+          center={location}
           zoom={13}
           scrollWheelZoom={false}
         >
 
           <TileLayer
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'
-            />
-          {console.log('planes->', planes)}
-          {planes.length > 0 &&
-                  planes.map((marker) => (
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'
+          />
 
-                    <Marker
-                      position={[
-                        marker[1],
-                        marker[2]
-                      ]}
-                      icon={customMarkerIcon}
-                    >
-                      <Popup >{marker[0]}</Popup>
-                    </Marker>
-                  ))}
-          }
+          {/* <Marker position={location} eventHandlers={{
+            click: () => {
+              console.log('marker clicked')
+            }
+          }}>
+            <Popup >
+              <div>
+                <h1>hello</h1>
+              </div>
+            </Popup>
+          </Marker> */}
+          <LocationMarker/>
 
 
         </MapContainer>
       </div>
-    </div>
+
+
   )
+
 }
+
+
 
 export default BuildMap
