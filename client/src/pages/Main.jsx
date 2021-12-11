@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Typography, AppBar, Box, Card, CardActions, Button, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container  } from '@material-ui/core';
-
 import RunCircleIcon from '@mui/icons-material/RunCircle';
 import BuildMap from '../component/BuildMap.jsx';
 import SMSForm from '../component/SMSForm.jsx';
@@ -11,6 +10,25 @@ import SMSForm from '../component/SMSForm.jsx';
 
 class Main extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      eventList:[]
+    }
+  }
+
+  componentDidMount() {
+    fetch('/event')
+      .then(res => res.json())
+      .then(
+        data => {
+          console.log('data from backend', data);
+          this.setState({
+            eventList: data
+          })
+        }
+      )
+  }
   render() {
     return(
       <>
@@ -23,39 +41,27 @@ class Main extends React.Component {
         </AppBar>
         <main>
             <div>
-              <Container maxwidth='sm' direction='row'>
-                <Typography variant='h6' align='center' color='textPrimary gutterBottom'>
+
+                <Typography variant='h6' align='center' color='textPrimary'>
                   Find other runners in your area. It's easy. It's safe.
                 </Typography>
                 <div>
-                  <Grid Container  direction='row' spacing={2} justify='center'>
-                      <Grid item direction='row'>
+                  {/* <Grid Container spacing={2} justify='center'> */}
                           <BuildMap/>
-                      </Grid>
+                  {/* </Grid> */}
+                  {/* <Grid Container  spacing={2} justify='center'> */}
 
-                      <Grid item  direction='row'>
-                          <Button variant='contained' color='primary'>Hello1</Button>
-                      </Grid>
+                    <Typography variant='subtitle2' align='center'>
+                    You can send event information to your phone right here.
+                    </Typography>
+                        {/* <Grid item > */}
+                            <SMSForm/>
+                        {/* </Grid> */}
 
-                      <Grid item direction='row'>
-                          <Button variant='contained' color='secondary'>Hello2</Button>
-                      </Grid>
-
-
-                  </Grid>
-                  <Grid Container  spacing={2} justify='center'>
-
-                  <Typography variant='subtitle2' align='center' color='textPrimary gutterBottom'>
-                  You can send event information to your phone right here.
-                  </Typography>
-                      <Grid item >
-                          <SMSForm/>
-                      </Grid>
-
-                  </Grid>
+                    {/* </Grid> */}
                 </div>
 
-              </Container>
+
             </div>
 
 

@@ -1,5 +1,4 @@
 import React from 'react';
-console.log(React.version);
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom';
 import Main from './pages/Main.jsx';
@@ -11,29 +10,17 @@ class App extends React.Component {
     return(
       <>
 
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/Create" element={<Create />} />
-      </Routes>
-    </BrowserRouter>
-      {/* <BrowserRouter>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/Create" element={<Create />} />
+            <Route path="/main" element={<Main />} />
+          </Routes>
+        </BrowserRouter>
 
-        <Routes>
-
-          <Route path ='/' element={ <Main/>} />
-          <Route path ='/create' element={ <Create/>}/>
-
-        </Routes>
-
-        </BrowserRouter> */}
-
-    </>
+      </>
     )
   }
-
-
-
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));

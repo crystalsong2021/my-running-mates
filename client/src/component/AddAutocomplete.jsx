@@ -3,6 +3,7 @@ import { Search, GpsFixed } from "@material-ui/icons"
 import {  Typography, Button, Grid, TextField , AppBar, Toolbar} from '@material-ui/core';
 import AddIcon from '@mui/icons-material/Add';
 import { InputBase } from '@mui/material';
+import AddLocationIcon from '@mui/icons-material/AddLocation';
 
 const apiKey = 'AIzaSyCv_aRB5oKDWYhyl94PLs1MyAND-FoIG08';
 const mapApiJs = 'https://maps.googleapis.com/maps/api/js';
@@ -164,7 +165,8 @@ function AddAutocomplete() {
         <input onChange={(e)=>{console.log(e.target.value)}}ref={searchInput} type="text" placeholder="Meetup location...."/>
 
           {/* <span><Search /></span> */}
-          <button onClick={findMyLocation}><GpsFixed /></button>
+          {/* <AddLocationIcon  onClick={findMyLocation}/>
+          <button onClick={findMyLocation}></button> */}
         </div>
 
         {/* <div className="address">

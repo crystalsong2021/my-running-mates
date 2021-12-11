@@ -1,5 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const db = require('../database/index');
+const {addEvent, getEvents} = require('../database/controllers/eventController.js');
+console.log('event-->', addEvent, getEvents);
 const pino = require('express-pino-logger')();
 const client = require('twilio')(
   process.env.TWILIO_ACCOUNT_SID,
@@ -14,6 +17,18 @@ app.use('/create', express.static('client/dist'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(pino);
+
+app.get('/event', (req, res) => {
+  console.log('GET')
+  getEvents((err, data)=>{
+    if(err){
+      res.send(err)
+    }else{
+      console.log('data from controller-->', data)
+      res.send(data);
+    }
+  })
+})
 
 app.get('/api/greeting', (req, res) => {
   console.log('GET->', req.query)

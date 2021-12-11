@@ -66,7 +66,7 @@ class SMSForm extends Component {
         <TextField
             id='to'
             name='to'
-            placeholder='To'
+            placeholder='Phone Number'
             type='tel'
             value={this.state.message.to}
             onChange={this.onHandleChange}
@@ -89,7 +89,7 @@ class SMSForm extends Component {
             id="body"
             size='medium'
             name="body"
-            placeholder='Body'
+            placeholder='Message'
             type='text'
             value={this.state.message.body}
             onChange={this.onHandleChange}

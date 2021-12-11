@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useRef, useState } from 'react';
-
+import { BrowserRouter, Router, Routes, Route ,useNavigate, useLocation, Navigate} from 'react-router-dom';
 
 // import {
 //   MuiPickersUtilsProvider,
@@ -10,6 +10,7 @@ import React, { Component, useEffect, useRef, useState } from 'react';
 import {  Typography, Button, Grid, TextField , AppBar, Toolbar} from '@material-ui/core';
 
 import AddIcon from '@mui/icons-material/Add';
+import AddLocationIcon from '@mui/icons-material/AddLocation';
 import AddAutocomplete from './AddAutocomplete.jsx'
 
 
@@ -22,8 +23,6 @@ class EventForm extends Component {
         address: '',
         date:'',
         time:'',
-        yes:0,
-        maybe:0
       },
       submitting: false,
       error: false
@@ -33,9 +32,25 @@ class EventForm extends Component {
   }
 
   onSubmit(event) {
+    const navigate = useNavigate();
+    const location = useLocation();
+
     event.preventDefault();
     this.setState({ submitting: true });
     console.log('Before sent->', this.state.event)
+
+    navigate('/')
+    // <Navigate to='main'/>
+    // <>
+
+    //       <Routes>
+    //         <Route path="/" element={<Main />} />
+    //         <Route path="/Create" element={<Create />} />
+    //         <Route path="/main" element={<Main />} />
+    //       </Routes>
+
+    // </>
+
     fetch('/event', {
       method: 'POST',
       headers: {
@@ -74,6 +89,8 @@ class EventForm extends Component {
   }
 
   render() {
+
+
     return (
       <>
       <AppBar position='relative'>
@@ -81,6 +98,7 @@ class EventForm extends Component {
           <Typography variant='h6' align='center'>Create Event</Typography>
           </Toolbar>
       </AppBar>
+      {/* {this.state.submitting? <Redirect to ='/' /> : <Main/>} */}
       <form
         onSubmit={this.onSubmit}
         className={this.state.error ? 'error sms-form' : 'sms-form'}
@@ -156,6 +174,7 @@ class EventForm extends Component {
           variant='contained'
           color='primary'
           type='submit'
+
         >
           Create
         </Button>
