@@ -1,7 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react'
 import { Search, GpsFixed } from "@material-ui/icons"
+import {  Typography, Button, Grid, TextField , AppBar, Toolbar} from '@material-ui/core';
+import AddIcon from '@mui/icons-material/Add';
+import { InputBase } from '@mui/material';
 
-
+const apiKey = 'AIzaSyCv_aRB5oKDWYhyl94PLs1MyAND-FoIG08';
 const mapApiJs = 'https://maps.googleapis.com/maps/api/js';
 const geocodeJson = 'https://maps.googleapis.com/maps/api/geocode/json';
 
@@ -142,9 +145,25 @@ function AddAutocomplete() {
   return (
     <div className="App">
       <div>
+
+
         <div className="search">
-          <span><Search /></span>
-          <input onChange={(e)=>{console.log(e.target.value)}}ref={searchInput} type="text" placeholder="Meetup Address...."/>
+        {/* <TextField
+            id='to'
+            name='to'
+            placeholder='Meetup location'
+
+            // value={this.state.message.to}
+            // onChange={this.onHandleChange}
+            margin="dense"
+            rows='20'
+            fullWidth
+            variant="outlined"
+            ref={searchInput}
+        /> */}
+        <input onChange={(e)=>{console.log(e.target.value)}}ref={searchInput} type="text" placeholder="Meetup location...."/>
+
+          {/* <span><Search /></span> */}
           <button onClick={findMyLocation}><GpsFixed /></button>
         </div>
 
